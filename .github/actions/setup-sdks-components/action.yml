@@ -3,10 +3,10 @@ description: 'Installs all required SDKs and components needed for CI runs.'
 runs:
   using: "composite"
   steps:
-    - name: Setup .NET Core SDK (7.0.x)
+    - name: Setup .NET Core SDK (8.0.x)
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 8.0.x
 
     - name: Get Dotnet Info
       shell: pwsh
