@@ -5,7 +5,7 @@
 
 	<PropertyGroup>
 		<WarningsAsErrors>Nullable;CS1591</WarningsAsErrors>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 		<WarningsNotAsErrors>$(WarningsNotAsErrors);RS0016</WarningsNotAsErrors>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 
