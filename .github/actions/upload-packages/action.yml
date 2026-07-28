@@ -48,9 +48,9 @@ runs:
         echo "release-tag: ${{ inputs.release-tag }}"
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v7
       with:
-        node-version: '18'
+        node-version: 'latest'
 
     - name: Setup AutoChangelog
       shell: pwsh
@@ -61,15 +61,15 @@ runs:
       run: |
         if ("${{ inputs.is-release }}" -eq "true")
         {
-            auto-changelog --sort-commits date --hide-credit --template "${{ inputs.changelog-template }}" --commit-limit false --unreleased --starting-version "${{ inputs.release-tag }}" --output "${{ inputs.changelog-path }}"
+            auto-changelog --sort-commits date --hide-credit --template "${{ inputs.changelog-template }}" --commit-limit false --starting-version "${{ inputs.release-tag }}" --output "${{ inputs.changelog-path }}"
         }
         else
         {
-            auto-changelog --sort-commits date --hide-credit --template "${{ inputs.changelog-template }}" --commit-limit false --unreleased --output "${{ inputs.changelog-path }}"
+            auto-changelog --sort-commits date --hide-credit --template "${{ inputs.changelog-template }}" --commit-limit false --output "${{ inputs.changelog-path }}"
         }
 
     - name: Upload NuGet Package Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         # Artifact name
         name: NuGet Packages
@@ -79,7 +79,7 @@ runs:
           **/${{ inputs.snupkg-glob }}
 
     - name: Upload Changelog Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         # Artifact name
         name: Changelog
@@ -88,7 +88,7 @@ runs:
         retention-days: 0
 
     - name: Upload to GitHub Releases
-      uses: softprops/action-gh-release@v0.1.15
+      uses: softprops/action-gh-release@v3
       if: ${{ inputs.is-release == 'true' }}
       with:
         # Path to load note-worthy description of changes in release from
